@@ -19,15 +19,33 @@ export const router = async (path = '/') => {
 
     const route: Route | null = findMatch(path);
 
+    let redirectPath: string | null = null;
+
     if (!route) {
-        // TODO add 404 Page
         pageInstance = new LandingPage(appState);
+        redirectPath = '/';
+
     } else {
-        pageInstance = new route.view(appState);
+        const isAuthRequired = route.authOnly && !appState.currentUser;
+        const isGuestOnly = route.guestOnly && appState.currentUser;
+
+        if (isAuthRequired || isGuestOnly) {
+            pageInstance = new LandingPage(appState);
+            redirectPath = '/';
+        } else {
+            pageInstance = new route.view(appState);
+        }
     }
 
-    root.innerHTML = '';
-    root.appendChild(pageInstance.render());
+    if (redirectPath && path !== redirectPath) {
+        appState.currentPath = redirectPath;
+        window.history.replaceState(appState, '', redirectPath);
+    }
+
+    if (pageInstance) {
+        root.innerHTML = '';
+        root.appendChild(pageInstance.render());
+    }
 };
 
 export const navigate = async (path: string) => {

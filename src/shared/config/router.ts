@@ -9,7 +9,7 @@ export type Route = {
     href: string;
     view: PageConstructor;
     authOnly?: boolean;
-    nonAuthOnly?: boolean;
+    guestOnly?: boolean;
 }
 
 export const config: Record<string, Route> = {
@@ -20,12 +20,12 @@ export const config: Record<string, Route> = {
     login: {
         href: '/login',
         view: LoginPage,
-        nonAuthOnly: true,
+        guestOnly: true,
     },
     signup: {
         href: '/sign-up',
         view: SignupPage,
-        nonAuthOnly: true,
+        guestOnly: true,
     },
     profile: {
         href: '/profile',

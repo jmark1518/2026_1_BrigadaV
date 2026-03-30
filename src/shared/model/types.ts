@@ -19,3 +19,5 @@ export interface IPage {
     render(): HTMLElement;
     destroy(): void;
 }
+
+export type PageConstructor = new (appState: AppState) => IPage;
