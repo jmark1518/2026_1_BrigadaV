@@ -1,3 +1,3 @@
 export const handleTabChange = (tabName: string) => {
-   console.log('bruh');
+    // TODO add section change and re-render
 }

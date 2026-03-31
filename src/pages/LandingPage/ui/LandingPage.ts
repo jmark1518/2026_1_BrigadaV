@@ -30,7 +30,7 @@ export class LandingPage implements IPage {
 
     public render(): HTMLElement {
         this.element = document.createElement('div');
-        const html = template({styles});
+        const html = template({ styles });
 
         this.element.classList.add('landing-page');
         this.element.innerHTML = html;
@@ -53,9 +53,5 @@ export class LandingPage implements IPage {
         return this.element;
     }
 
-    public destroy(): void {
-        if (this.header) {
-            this.header.destroy();
-        }
-    }
+    public destroy(): void { }
 }

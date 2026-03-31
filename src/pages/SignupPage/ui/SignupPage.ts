@@ -102,9 +102,5 @@ export class SignupPage implements IPage {
         return this.element;
     }
 
-    public destroy(): void {
-        if (this.header) {
-            this.header.destroy();
-        }
-    }
+    public destroy(): void { }
 }

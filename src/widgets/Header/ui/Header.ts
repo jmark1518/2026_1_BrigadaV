@@ -42,6 +42,5 @@ export class Header {
         return this.element;
     }
 
-    public destroy(): void {
-    }
+    public destroy(): void { }
 }

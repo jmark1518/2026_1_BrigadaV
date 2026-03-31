@@ -72,7 +72,5 @@ export class ProfilePage implements IPage {
         return this.element;
     }
 
-    public destroy(): void {
-        this.header?.destroy();
-    }
+    public destroy(): void { }
 }
