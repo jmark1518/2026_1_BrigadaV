@@ -4,6 +4,7 @@ import { ProfilePage } from '@/pages/ProfilePage';
 import { SignupPage } from '@/pages/SignupPage';
 
 import { AppState, PageConstructor } from '../model';
+import { TripListPage } from '@/pages/TripListPage';
 
 export type Route = {
     href: string;
@@ -30,6 +31,11 @@ export const config: Record<string, Route> = {
     profile: {
         href: '/profile',
         view: ProfilePage,
+        authOnly: true,
+    },
+    tripList: {
+        href: '/trip-list',
+        view: TripListPage,
         authOnly: true,
     }
 };

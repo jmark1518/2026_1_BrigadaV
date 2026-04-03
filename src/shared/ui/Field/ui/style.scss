@@ -26,6 +26,10 @@
         gap: 0.25rem;
     }
 
+    &--rounded &__input-wrapper {
+        border-radius: 9999px;
+    }
+
     &__icon {
         background-color: transparent;
         border: none;

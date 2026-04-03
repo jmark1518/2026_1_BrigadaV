@@ -1,0 +1,35 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/layout' as *;
+@use '@/shared/styles/mixins' as *;
+
+.trip-list-page {
+    @include default-page-layout;
+    gap: 1rem;
+    background-color: $surface-0;
+}
+
+.page-header {
+    font-size: 3.5rem;
+}
+
+.main {
+    padding-bottom: 2.5rem;
+}
+
+.create-trip {
+    display: flex;
+    padding: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: $surface-0;
+    border: 1px solid $color-border-button;
+    border-radius: 8px;
+
+    &__image {
+        --size: 20px;
+
+        width: var(--size);
+        height: var(--size);
+    }
+}

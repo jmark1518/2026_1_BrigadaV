@@ -1,0 +1,19 @@
+<dialog class="{{s 'create-trip'}}" id="{{id}}" closedby="any">
+  <h2 class="{{s 'create-trip__header'}}">Создать поездку</h2>
+
+  <form class="{{s 'create-trip__form'}}">
+    <div class="{{s 'create-trip__fields'}}">
+      {{#each fields}}
+      <div data-slot="{{this}}"></div>
+      {{/each}}
+    </div>
+    <div class="{{s 'create-trip__actions'}}">
+      <button type="button" command="close" commandfor="{{id}}" class="{{s 'create-trip__cancel'}}">Отменить</button>
+      <button type="submit" class="{{s 'create-trip__submit'}}">Создать поездку</button>
+    </div>
+  </form>
+
+  <button type="button" command="close" commandfor="{{id}}" class="{{s 'create-trip__close'}}">
+    <img src="/icons/x.svg" class="{{s 'create-trip__close-image'}}">
+  </button>
+</dialog>
