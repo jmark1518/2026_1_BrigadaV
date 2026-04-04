@@ -1,25 +1,21 @@
 @use '@/shared/styles/variables' as *;
 @use '@/shared/styles/layout' as *;
-@use '@/shared/styles/mixins' as *;
 
-.trip-list-page {
+.trip-detail-page {
     @include default-page-layout;
     gap: 1rem;
     background-color: $surface-0;
 }
 
-.page-header {
-    font-size: 3.5rem;
-}
-
 .main {
     display: flex;
-    padding: 0 6rem 3rem;
+    padding: 0 3rem 3rem;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
+    background-color: $surface-0;
 }
 
-.create-trip {
+.add-place {
     display: flex;
     padding: 2.75rem;
     align-items: center;

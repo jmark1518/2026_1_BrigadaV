@@ -59,7 +59,7 @@ export class ProfilePage implements IPage {
             styles,
         });
 
-        this.element.classList.add('profile-page');
+        this.element.classList.add(styles['profile-page']);
         this.element.innerHTML = html;
 
         injectComponents(this.element, {

@@ -1,4 +1,4 @@
-import './style.scss';
+import styles from './style.module.scss';
 
 import template from './TripDetailPage.hbs?compiled';
 import { AppState, IPage } from '@/shared/model';
@@ -23,9 +23,9 @@ export class TripDetailPage implements IPage {
 
     public render(): HTMLElement {
         this.element = document.createElement('div');
-        const html = template();
+        const html = template({ styles });
 
-        this.element.classList.add('trip-detail-page');
+        this.element.classList.add(styles['trip-detail-page']);
         this.element.innerHTML = html;
 
         injectComponents(this.element, {

@@ -1,5 +1,17 @@
 <div data-slot="header"></div>
 
-<main class="main">
+<main class="{{s 'main'}}">
+  <div data-slot="trip-banner"></div>
 
+  <section class="{{s 'places'}}">
+    <h3 class="places__header">Интересные места</h3>
+    <div data-slot="places-list"></div>
+  </section>
+
+  <button class="{{s 'add-place'}}">
+    <img src="/icons/plus.svg" class="{{s 'add-place__image'}}">
+    <h3 class="{{s 'add-place__text'}}">Добавим красок в ваше путешествие</h3>
+  </button>
 </main>
+
+<div data-slot="trip-options-dialog"></div>

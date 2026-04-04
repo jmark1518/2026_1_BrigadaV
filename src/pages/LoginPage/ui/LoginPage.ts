@@ -62,7 +62,7 @@ export class LoginPage implements IPage {
         this.element = document.createElement('div');
         const html = template(styles);
 
-        this.element.classList.add('login-page');
+        this.element.classList.add(styles['login-page']);
         this.element.innerHTML = html;
 
         if (this.header) {

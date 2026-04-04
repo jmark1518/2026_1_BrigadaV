@@ -86,7 +86,7 @@ export class SignupPage implements IPage {
         this.element = document.createElement('div');
         const html = template(styles);
 
-        this.element.classList.add('signup-page');
+        this.element.classList.add(styles['signup-page']);
         this.element.innerHTML = html;
 
         if (this.header) {
