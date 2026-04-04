@@ -1,2 +1,2 @@
 export { TripCard } from './ui/TripCard';
-export { TripCardProps } from './model/types';
+export type { TripCardProps } from './model/types';

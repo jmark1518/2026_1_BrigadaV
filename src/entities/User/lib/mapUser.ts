@@ -1,6 +1,6 @@
 import { LoginDTO, RegisterDTO } from '@/shared/api';
 
-import { User } from '@/shared/model';
+import { User } from '../model/types';
 
 export const mapUser = (userData: LoginDTO | RegisterDTO): User => {
     return {

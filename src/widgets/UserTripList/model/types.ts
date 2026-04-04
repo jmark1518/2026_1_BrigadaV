@@ -1,4 +1,4 @@
-import { User } from "@/shared/model"
+import { User } from "@/entities/User";
 
 export type UserTripListProps = {
     className?: string;

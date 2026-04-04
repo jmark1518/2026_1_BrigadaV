@@ -1,2 +1,2 @@
 export { EditTripDialog } from './ui/EditTripDialog';
-export { EditTripInitValues } from './model/types';
+export type { EditTripInitValues } from './model/types';

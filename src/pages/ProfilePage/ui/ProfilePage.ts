@@ -1,4 +1,4 @@
-import './style.scss';
+import styles from './style.module.scss';
 
 import { UserBio } from '@/entities/User';
 import { ProfileNavigation } from '@/features/ProfileNavigation';
@@ -56,6 +56,7 @@ export class ProfilePage implements IPage {
         this.element = document.createElement('div');
         const html = template({
             settingsModalId: SETTINGS_MODAL_ID,
+            styles,
         });
 
         this.element.classList.add('profile-page');

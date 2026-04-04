@@ -1,15 +1,15 @@
-import './style.scss';
+import styles from './style.module.scss';
 
-
-import template from './TripListPage.hbs?compiled';
+import { TripCardProps } from '@/entities/Trip';
+import { eventBus } from '@/shared/lib';
 import { AppState, IPage } from '@/shared/model';
-import { Header } from '@/widgets/Header';
 import { injectComponents } from '@/shared/utils';
 import { CreateTripDialog } from '@/widgets/CreateTripDialog';
-import { UserTripList } from '@/widgets/UserTripList';
-import { eventBus } from '@/shared/lib';
 import { EditTripDialog, EditTripInitValues } from '@/widgets/EditTripDialog';
-import { TripCardProps } from '@/entities/Trip';
+import { Header } from '@/widgets/Header';
+import { UserTripList } from '@/widgets/UserTripList';
+
+import template from './TripListPage.hbs?compiled';
 
 const CREATE_TRIP_DIALOG_ID = 'create-trip';
 
@@ -50,15 +50,15 @@ export class TripListPage implements IPage {
         eventBus.on('TripCard:edit', this.handleTripEdit);
     }
 
-    private handleTripEdit = (tripData: TripCardProps): void => {
+    private handleTripEdit = ({trip}: TripCardProps): void => {
         if (!this.editTripDialog) return;
 
         const editData: EditTripInitValues = {
-            title: tripData.title,
-            location: tripData.location,
-            startDate: tripData.startDate,
-            endDate: tripData.endDate,
-            description: tripData.description,
+            title: trip.title,
+            location: trip.location,
+            startDate: trip.startDate,
+            endDate: trip.endDate,
+            description: trip.description,
         };
 
         this.editTripDialog.show(editData);
@@ -66,11 +66,13 @@ export class TripListPage implements IPage {
 
     public render(): HTMLElement {
         this.element = document.createElement('div');
+
         const html = template({
             createTripDialogId: CREATE_TRIP_DIALOG_ID,
+            styles,
         });
 
-        this.element.classList.add('trip-list-page');
+        this.element.classList.add(styles['trip-list-page']);
         this.element.innerHTML = html;
 
         injectComponents(this.element, {

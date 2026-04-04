@@ -9,26 +9,32 @@ import template from './UserTripList.hbs?compiled';
 export class UserTripList {
     element?: HTMLElement;
 
-    constructor(private props: UserTripListProps) {}
+    constructor(private props: UserTripListProps) { }
 
     private async loadTrips(): Promise<void> {
         // TODO add API call
         if (!this.element) return;
 
         this.element.appendChild((new TripCard({
-            title: 'Поиск лепреконов',
-            startDate: new Date(2026, 2, 5),
-            endDate: new Date(2026, 2, 17),
-            location: 'Англия',
-            preview: '/mock/place/trip1.png',
+            trip: {
+                id: 1,
+                title: 'Поиск лепреконов',
+                startDate: new Date(2026, 2, 5),
+                endDate: new Date(2026, 2, 17),
+                location: 'Англия',
+                preview: '/mock/place/trip1.png',
+            }
         })).render());
 
         this.element.appendChild((new TripCard({
-            title: 'Отдых на курорте',
-            startDate: new Date(2026, 11, 25),
-            endDate: new Date(2027, 0, 5),
-            location: 'Дубай',
-            preview: '/mock/place/trip2.png',
+            trip: {
+                id: 12,
+                title: 'Отдых на курорте',
+                startDate: new Date(2026, 11, 25),
+                endDate: new Date(2027, 0, 5),
+                location: 'Дубай',
+                preview: '/mock/place/trip2.png',
+            }
         })).render());
     }
 

@@ -1,4 +1,4 @@
-import './style.scss';
+import styles from './style.module.scss';
 
 import { togglePasswordVisibility } from '@/shared/lib';
 import { AppState, IPage } from '@/shared/model';
@@ -60,7 +60,7 @@ export class LoginPage implements IPage {
 
     public render(): HTMLElement {
         this.element = document.createElement('div');
-        const html = template();
+        const html = template(styles);
 
         this.element.classList.add('login-page');
         this.element.innerHTML = html;

@@ -1,17 +1,17 @@
-<article class="{{s 'card'}}">
-  <a href="#">
-    <img src="{{preview}}" class="{{s 'card__preview'}}">
+<article class="{{s 'card'}}" data-id="{{trip.id}}">
+  <a href="{{url '/trip' trip.id}}">
+    <img src="{{trip.preview}}" class="{{s 'card__preview'}}">
   </a>
 
   <div class="{{s 'card__content'}}">
-    <a href="#" class="{{s 'card__title'}}">{{title}}</a>
+    <a href="{{url '/trip' id}}" class="{{s 'card__title'}}">{{trip.title}}</a>
 
     <div class="{{s 'card__meta'}}">
       <div class="{{s 'card__date-wrapper'}}">
         <time class="{{s 'card__date-start'}}" datetime="{{isoStart}}">{{start}}</time> &ndash;
         <time class="{{s 'card__date-end'}}" datetime="{{isoEnd}}">{{end}}</time>
       </div>
-      <span class="{{s 'card__location'}}">{{location}}</span>
+      <span class="{{s 'card__location'}}">{{trip.location}}</span>
     </div>
   </div>
 

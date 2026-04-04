@@ -4,11 +4,16 @@ import { TripCardProps } from '../model/types';
 import styles from './style.module.scss';
 import template from './TripCard.hbs?compiled';
 import { eventBus } from '@/shared/lib';
+import { Trip } from '@/entities/Trip/model/types';
 
 export class TripCard {
     element?: HTMLElement;
 
     constructor(private props: TripCardProps) {}
+
+    private get trip(): Trip {
+        return this.props.trip;
+    }
 
     private initListeners(): void {
         if (!this.element) return;
@@ -25,7 +30,7 @@ export class TripCard {
     public render(): HTMLElement {
         this.element = stringToElement(template({
             ...this.props,
-            ...formatDate(this.props.startDate, this.props.endDate),
+            ...formatDate(this.trip.startDate, this.trip.endDate),
             styles,
         }));
 

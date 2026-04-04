@@ -1,0 +1,15 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/layout' as *;
+
+.trip-detail-page {
+    @include default-page-layout;
+    gap: 1rem;
+    background-color: $surface-0;
+}
+
+.main {
+    display: flex;
+    padding: 0 7.5rem;
+    flex-direction: column;
+    gap: 2rem;
+}
