@@ -1,4 +1,4 @@
-export const stringToElement = (htmlString: string): HTMLElement => {
+export const stringToElement = <T extends HTMLElement = HTMLElement>(htmlString: string): T => {
     const parser = document.createElement('div');
     parser.innerHTML = htmlString;
 
@@ -8,5 +8,5 @@ export const stringToElement = (htmlString: string): HTMLElement => {
         throw new Error(`Failed to parse "${htmlString.slice(0, 30)}..."`)
     }
 
-    return element;
+    return element as T;
 };

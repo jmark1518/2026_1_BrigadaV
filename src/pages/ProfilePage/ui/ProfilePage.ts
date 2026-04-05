@@ -1,6 +1,6 @@
-import './style.scss';
+import styles from './style.module.scss';
 
-import { UserBio } from '@/entities/User/ui/UserBio';
+import { UserBio } from '@/entities/User';
 import { ProfileNavigation } from '@/features/ProfileNavigation';
 import { AppState, IPage } from '@/shared/model';
 import { injectComponents } from '@/shared/utils';
@@ -55,10 +55,11 @@ export class ProfilePage implements IPage {
     public render(): HTMLElement {
         this.element = document.createElement('div');
         const html = template({
-            'settings-modal-id': SETTINGS_MODAL_ID,
+            settingsModalId: SETTINGS_MODAL_ID,
+            styles,
         });
 
-        this.element.classList.add('profile-page');
+        this.element.classList.add(styles['profile-page']);
         this.element.innerHTML = html;
 
         injectComponents(this.element, {

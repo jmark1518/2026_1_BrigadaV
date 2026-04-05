@@ -1,0 +1,20 @@
+<dialog class="{{s 'edit-trip'}}" id="{{id}}" closedby="any">
+  <form class="{{s 'edit-trip__form'}}">
+
+    <div class="{{s 'edit-trip__fields'}}">
+      <div data-slot="title"></div>
+      <div data-slot="location"></div>
+      <div class="{{s 'edit-trip__date-wrapper'}}">
+        <div data-slot="start-date"></div>
+        <div data-slot="end-date"></div>
+      </div>
+      <div data-slot="description"></div>
+    </div>
+
+    <div class="{{s 'edit-trip__actions'}}">
+      <button type="button" class="{{s 'edit-trip__delete'}}">Удалить поездку</button>
+      <button type="button" command="close" commandfor="{{id}}" class="{{s 'edit-trip__cancel'}}">Отменить</button>
+      <button type="submit" class="{{s 'edit-trip__submit'}}">Сохранить</button>
+    </div>
+  </form>
+</dialog>

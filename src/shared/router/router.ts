@@ -13,7 +13,6 @@ export const router = async (path = '/') => {
         return;
     }
 
-    // TODO maybe remove all destroy() stuff, it's obsolete
     if (pageInstance) {
         pageInstance.destroy();
     }

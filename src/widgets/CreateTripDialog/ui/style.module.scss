@@ -1,0 +1,61 @@
+@use '@/shared/styles/mixins' as *;
+
+.create-trip {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 40vw;
+    height: 100vh;
+    max-height: none;
+    margin: 0;
+    margin-left: auto;
+    padding-block: 4.5rem 0;
+    padding-inline: 3rem;
+    border: none;
+    border-radius: 8px 0 0 8px;
+
+    &:open {
+        display: grid;
+        grid-template-rows: max-content 1fr;
+    }
+
+    &__close {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: transparent;
+        border: none;
+    }
+
+    &__close-image {
+        --size: 32px;
+        width: var(--size);
+        height: var(--size);
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__fields {
+        display: flex;
+        margin-top: 1.25rem;
+        flex-grow: 1;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__cancel {
+        @include button-secondary;
+    }
+
+    &__submit {
+        @include button-primary;
+    }
+}

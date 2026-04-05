@@ -1,9 +1,4 @@
-export type User = {
-    id: number;
-    login: string;
-    nickname: string;
-    avatar: string;
-}
+import { User } from "@/entities/User";
 
 export type AppState = {
     currentPath: string;

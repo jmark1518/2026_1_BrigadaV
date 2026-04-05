@@ -32,7 +32,8 @@ export class LandingPage implements IPage {
         this.element = document.createElement('div');
         const html = template({ styles });
 
-        this.element.classList.add('landing-page');
+
+        this.element.classList.add(styles['landing-page']);
         this.element.innerHTML = html;
 
         if (this.header) {

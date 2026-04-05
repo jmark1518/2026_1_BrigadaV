@@ -1,0 +1,14 @@
+<div data-slot="header"></div>
+
+<main class="{{s 'main'}}">
+  <h1 class="{{s 'page-header'}}">Мои поездки</h1>
+  <button class="{{s 'create-trip'}}" command="show-modal" commandfor="{{createTripDialogId}}">
+    <img src="/icons/plus.svg" class="{{s 'create-trip__image'}}">
+    <h3 class="{{s 'create-trip__text'}}">Создать новую поездку</h3>
+  </button>
+
+  <div data-slot="user-trip-list"></div>
+</main>
+
+<div data-slot="create-trip-dialog"></div>
+<div data-slot="edit-trip-dialog"></div>

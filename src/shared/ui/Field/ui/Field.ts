@@ -94,6 +94,21 @@ export class Field {
         }
     }
 
+    public setValue(value?: string): void {
+        if (!this.element || !value) return;
+
+        const input = this.element.querySelector<HTMLInputElement>('.field__input');
+        if (input) {
+            input.value = value;
+        }
+    }
+
+    public focus(): void {
+        if (!this.element) return;
+
+        this.element.querySelector<HTMLInputElement>('.field__input')?.focus();
+    }
+
     public render(): HTMLElement {
         this.element = stringToElement(template(this.props));
         this.initListeners();

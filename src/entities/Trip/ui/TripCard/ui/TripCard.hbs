@@ -1,0 +1,21 @@
+<article class="{{s 'card'}}" data-id="{{trip.id}}">
+  <a href="{{url '/trip' trip.id}}" data-link>
+    <img src="{{trip.preview}}" class="{{s 'card__preview'}}">
+  </a>
+
+  <div class="{{s 'card__content'}}">
+    <a href="{{url '/trip' trip.id}}" class="{{s 'card__title'}}" data-link>{{trip.title}}</a>
+
+    <div class="{{s 'card__meta'}}">
+      <div class="{{s 'card__date-wrapper'}}">
+        <time class="{{s 'card__date-start'}}" datetime="{{isoStart}}">{{start}}</time> &ndash;
+        <time class="{{s 'card__date-end'}}" datetime="{{isoEnd}}">{{end}}</time>
+      </div>
+      <span class="{{s 'card__location'}}">{{trip.location}}</span>
+    </div>
+  </div>
+
+  <button class="{{s 'card__options'}}" data-edit-button>
+    <img src="/icons/more-horizontal.svg" class="{{s 'card__options-img'}}">
+  </button>
+</article>
