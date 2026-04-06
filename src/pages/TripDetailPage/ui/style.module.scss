@@ -31,7 +31,7 @@
 
 .add-place {
     display: flex;
-    width: 70%;
+    width: clamp(250px, 65vw, 800px);
     padding: 2.75rem;
     align-items: center;
     justify-content: center;
