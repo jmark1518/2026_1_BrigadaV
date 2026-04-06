@@ -36,7 +36,7 @@ export class TripDetailPage implements IPage {
         this.placeList = new PlaceList({
             className: styles['place-list'],
             tripId: 1,
-        })
+        });
     }
 
     private get user() {

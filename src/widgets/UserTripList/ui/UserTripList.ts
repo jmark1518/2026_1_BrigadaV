@@ -34,7 +34,7 @@ export class UserTripList extends AbstractList<TripCard, UserTripListProps> {
                 }
             })
 
-        ]
+        ];
     }
 
     protected renderItem(item: TripCard): HTMLElement {

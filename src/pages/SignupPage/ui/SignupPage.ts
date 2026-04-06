@@ -53,10 +53,10 @@ export class SignupPage implements IPage {
                 },
             },
             {
-
                 id: 'password-input',
                 label: 'Введите пароль',
                 type: 'password',
+                note: 'Пароль должен содержать строчные и прописные буквы латинского алфавита, а также цифры',
                 attributes: {
                     name: 'password',
                     placeholder: '********',

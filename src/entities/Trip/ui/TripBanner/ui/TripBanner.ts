@@ -21,9 +21,7 @@ export class TripBanner {
         this.element.querySelector<HTMLButtonElement>('[data-delete-button]')?.addEventListener('click', this.handleDeleteButtonClick);
     }
 
-    private async handleDeleteButtonClick(event: Event): Promise<void> {
-        const target = event.currentTarget as HTMLButtonElement;
-
+    private async handleDeleteButtonClick(): Promise<void> {
         const confirmed = await ConfirmPopup({
             className: styles['banner__delete-confirm'],
             prompt: 'Вы действительно хотите удалить поездку?',
@@ -33,7 +31,7 @@ export class TripBanner {
         });
 
         if (confirmed) {
-            console.log('y');
+            // TODO add API call to remove trip
         }
     }
 

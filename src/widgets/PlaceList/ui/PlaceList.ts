@@ -39,7 +39,7 @@ export class PlaceList extends AbstractList<PlacePlacard, PlaceListProps> {
                     rating: 0.8,
                 }
             })
-        ]
+        ];
     }
 
     protected renderItem(item: PlacePlacard): HTMLElement {
