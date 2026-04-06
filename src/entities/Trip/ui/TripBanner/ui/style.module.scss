@@ -16,6 +16,7 @@
         --size: 36px;
 
         position: absolute;
+        anchor-name: --delete-button;
         top: 0.75rem;
         right: 1rem;
         display: flex;
@@ -71,4 +72,14 @@
         color: inherit;
     }
 
+    &__delete-confirm {
+        position-anchor: --delete-button;
+        position-area: right span-bottom;
+        margin: 0 0 0 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+        &::backdrop {
+            display: none;
+        }
+    }
 }
