@@ -57,8 +57,7 @@ export const config: Record<string, Route> = {
         href: '/attraction/:int',
         hrefRegex: /^\/attraction\/[0-9]+$/,
         view: AttractionPage,
-        authOnly: false
-  }
+    }
 };
 
 export const appState: AppState = {

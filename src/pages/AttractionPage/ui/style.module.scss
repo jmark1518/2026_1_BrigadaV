@@ -3,131 +3,123 @@
 @use '@/shared/styles/mixins' as *;
 
 .attraction-page {
-  @include default-page-layout;
-  background-color: $surface-0;
+    @include default-page-layout;
+    background-color: $surface-0;
 }
 
 .main {
-  padding: 1.5rem 7.5rem;
-  background-color: $surface-0;
+    display: grid;
+    padding: 0rem 4.5rem 2rem;
+    grid-template-areas:
+        "meta meta"
+        "gallery gallery"
+        "reviews working-hours";
+    grid-template-columns: 1fr max-content;
+    column-gap: 10rem;
+    background-color: $surface-0;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+.attraction-meta {
+    display: grid;
+    margin-bottom: 2.5rem;
+    grid-area: meta;
+    grid-template-areas:
+        "name like"
+        "rating like";
+    grid-template-columns: 1fr max-content;
+    row-gap: 1rem;
 
-.title-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1.5rem;
-  position: relative;
-}
+    &__name {
+        grid-area: name;
+        font-size: 3.5rem;
+    }
 
-.title {
-  @include typo-h2;
-  margin: 0 0 0.5rem 0;
-  color: $color-text-main;
-}
+    &__rating {
+        display: flex;
+        grid-area: rating;
+        align-items: center;
+        gap: 0.5rem;
+    }
 
-.rating {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-}
+    &__rating-value {
+        --hue: calc(var(--rating) / 5 * 120);
+        color: hsl(var(--hue), 100%, 34%);
 
-.rating-value {
-  @include typo-h3;
-  font-weight: 600;
-  color: $color-text-main;
-}
+        font-weight: bold;
+    }
 
-.reviews-count {
-  @include typo-p;
-  color: $color-text-muted;
+    &__review-count {
+        @include typo-p;
+    }
+
+    &__like {
+        grid-area: like;
+    }
 }
 
 .gallery {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  height: 400px;
+    margin-bottom: 3.25rem;
+    grid-area: gallery;
 }
 
-.gallery-main {
-  flex: 2;
-  border-radius: 16px;
-  overflow: hidden;
+.reviews {
+    display: grid;
+    grid-area: reviews;
+    grid-template-areas:
+        "header write-review"
+        "review-list review-list";
+    row-gap: 2.5rem;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
+    &__header {
+        grid-area: header;
+    }
 
-.gallery-side {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    &__write-review {
+        @include typo-p;
+        display: flex;
+        width: 170px;
+        height: 40px;
+        grid-area: write-review;
+        align-items: center;
+        justify-content: center;
+        place-self: center end;
+        gap: 0.5rem;
+        background-color: transparent;
+        border: 1px solid $guidely-primary;
+        border-radius: 8px;
+        transition:
+            background-color $timing-animation-medium,
+            color $timing-animation-medium;
 
-  img {
-    width: 100%;
-    height: calc(50% - 0.5rem);
-    object-fit: cover;
-    border-radius: 16px;
-  }
-}
 
-.two-columns {
-  display: flex;
-  grid-template-columns: 2fr 1fr; 
-  gap: 8rem;
-  align-items: start;
-}
+        &::before {
+            width: 24px;
+            height: 24px;
+            background-color: $color-text-main;
+            mask-image: url("/icons/pen.svg");
+            mask-position: center;
+            mask-repeat: no-repeat;
+            mask-size: contain;
+            transition: background-color $timing-animation-medium;
+            content: "";
+        }
 
-.reviews-section {
-  flex: 2;
-}
+        &:hover {
+            color: $color-text-contrast;
+            background-color: $guidely-primary;
+        }
 
-.reviews-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
+        &:hover::before {
+            background-color: $color-text-contrast;
+        }
+    }
 
-.section-title {
-  @include typo-h3;
-  margin: 0;
-  color: $color-text-main;
-}
-
-.write-review-btn {
-  @include typo-p;
-  padding: 0.5rem 1rem;
-  color: $black;
-  background: none;
-  border: 1px solid $guidely-primary;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all $timing-animation-medium;
-
-  &:hover {
-    background-color: $guidely-primary;
-    color: white;
-  }
-}
-
-.reviews-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    &__list {
+        grid-area: review-list;
+    }
 }
 
 .working-hours {
-  padding: 3rem;
-  height: fit-content;
+    grid-area: working-hours;
+    align-self: start;
 }

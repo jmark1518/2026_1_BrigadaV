@@ -1,19 +1,30 @@
 import './style.scss';
-import { stringToElement } from '@/shared/utils';
+
+import { formatHours, stringToElement, WorkingHour } from '@/shared/utils';
+
+import { WorkingHoursProps } from '../model/types';
 import template from './WorkingHours.hbs?compiled';
 
+const workingHours: WorkingHour[] = [
+    { day: 0, start: '10:00', end: '19:00' },
+    { day: 1, start: '10:00', end: '19:00' },
+    { day: 2, start: '10:00', end: '19:00' },
+    { day: 3, start: '10:00', end: '19:00' },
+    { day: 4, start: '10:00', end: '19:00' },
+    { day: 5, start: '11:00', end: '18:00' },
+    { day: 6, start: '11:00', end: '18:00' },
+];
+
 export class WorkingHours {
-  public render(): HTMLElement {
-    // статичные данные
-    const hours = {
-      monday: '10:00 – 18:00',
-      tuesday: '10:00 – 18:00',
-      wednesday: '10:00 – 18:00',
-      thursday: '10:00 – 18:00',
-      friday: '10:00 – 18:00',
-      saturday: '10:00 – 19:00',
-      sunday: '10:00 – 19:00',
-    };
-    return stringToElement(template(hours));
-  }
+    element?: HTMLElement;
+
+    constructor(private props: WorkingHoursProps) { }
+
+    public render(): HTMLElement {
+
+        return stringToElement(template({
+            ...this.props,
+            workingHours: formatHours(workingHours),
+        }));
+    }
 }

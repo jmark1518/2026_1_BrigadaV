@@ -1,91 +1,90 @@
-import styles from './style.module.scss';
+import { Place } from '@/entities/Place';
 import { AppState, IPage } from '@/shared/model';
-import { Header } from '@/widgets/Header';
 import { LikeButton } from '@/shared/ui';
-import { injectComponents } from '@/shared/utils';
-import { AttractionModel } from '../model/useAttraction';
-import { ReviewItem } from '@/features/Review';
+import { injectComponents, pluralize } from '@/shared/utils';
+import { Gallery } from '@/widgets/Gallery';
+import { Header } from '@/widgets/Header';
+import { ReviewList } from '@/widgets/ReviewList';
 import { WorkingHours } from '@/widgets/WorkingHours';
+
 import template from './AttractionPage.hbs?compiled';
+import styles from './style.module.scss';
 
+// TODO Minify mock images
 export class AttractionPage implements IPage {
-  private element: HTMLElement;
-  private header: Header;
-  private saveButton?: LikeButton;
-  private reviewItems: ReviewItem[] = [];
-  private workingHours: WorkingHours;
+    private element?: HTMLElement;
+    private header?: Header;
+    private likeButton?: LikeButton;
+    private gallery?: Gallery;
+    private reviewList?: ReviewList;
+    private workingHours?: WorkingHours;
 
-  constructor(private appState: AppState) {
-    this.header = new Header({
-      userSessionProps: { user: appState.currentUser },
-      withSearch: true,
-    });
-    this.workingHours = new WorkingHours();
+    constructor(private appState: AppState) {
+        this.header = new Header({
+            userSessionProps: { user: appState.currentUser },
+            withSearch: true,
+        });
 
-    this.element = document.createElement('div');
-    this.element.classList.add(styles['attraction-page']);
-    this.element.innerHTML = '<div style="padding: 2rem; text-align: center;">Загрузка...</div>';
+        if (appState.currentUser) {
+            this.likeButton = new LikeButton({
+                className: styles['attraction-meta__like'],
+                label: 'Сохранить',
+                isLiked: this.place.isLiked,
+            })
+        }
 
-    this.loadData();
-  }
+        this.gallery = new Gallery({
+            className: styles['gallery']
+        });
+        // TODO add photo count from this.place
+        this.gallery.addAttribute('data-count', '3');
 
-  private async loadData(): Promise<void> {
-    const path = window.location.pathname;
-    const match = path.match(/\/attraction\/(\d+)/);
-    const id = match ? match[1] : '1';
+        this.reviewList = new ReviewList({
+            className: styles['reviews__list'],
+        });
 
-    try {
-      const attraction = await AttractionModel.getAttraction(id);
-      const reviews = await AttractionModel.getReviews(id);
-
-      this.saveButton = new LikeButton({
-        className: 'attraction-save-btn',
-        isLiked: attraction.is_liked,
-      });
-
-      this.reviewItems = reviews.map(review => new ReviewItem(review));
-
-      this.updateDOM(attraction, reviews.length);
-    } catch (error) {
-      console.error('Failed to load attraction:', error);
-      this.element.innerHTML = '<div style="padding: 2rem; text-align: center; color: red;">Ошибка загрузки</div>';
-    }
-  }
-
-  private updateDOM(attraction: any, reviewsCount: number): void {
-    const mainImage = attraction.photos?.[0]?.file_path || '';
-    const sideImage1 = attraction.photos?.[1]?.file_path || '';
-    const sideImage2 = attraction.photos?.[2]?.file_path || '';
-
-    const html = template({
-      styles,
-      name: attraction.name,
-      rating: '4.6',
-      reviewsCount: reviewsCount,
-      mainImage,
-      sideImage1,
-      sideImage2,
-    });
-    this.element.innerHTML = html;
-
-    const reviewsSlot = this.element.querySelector('[data-slot="reviews-list"]');
-    if (reviewsSlot) {
-      this.reviewItems.forEach(item => {
-        reviewsSlot.appendChild(item.render());
-      });
+        this.workingHours = new WorkingHours({
+            className: styles['working-hours']
+        });
     }
 
-    injectComponents(this.element, {
-      header: this.header,
-      'save-button': this.saveButton,
-      'working-hours': this.workingHours,
-    });
-  }
+    get place(): Place {
+        return {
+            id: 1,
+            name: 'Британский музей',
+            location: '',
+            country: '',
+            price: 0,
+            isLiked: true,
+            rating: 4.6,
+        }
+    }
 
-  public render(): HTMLElement {
-    return this.element;
-  }
+    public render(): HTMLElement {
+        this.element = document.createElement('div');
+        const html = template({
+            place: this.place,
 
-  public destroy(): void {
-  }
+            // TODO move to somewhere
+            reviewCount: `(74520 ${pluralize(74520, { one: 'отзыв', few: 'отзыва', many: 'отзывов' })})`,
+            styles
+        });
+
+        this.element.classList.add(styles['attraction-page']);
+        this.element.style.setProperty('--rating', this.place.rating.toString());
+        this.element.innerHTML = html;
+
+        injectComponents(this.element, {
+            'header': this.header,
+            'like-button': this.likeButton,
+            'gallery': this.gallery,
+            'review-list': this.reviewList,
+            'working-hours': this.workingHours,
+        });
+
+        return this.element;
+    }
+
+    public destroy(): void {
+    }
 }
