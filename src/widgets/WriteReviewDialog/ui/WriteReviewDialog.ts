@@ -27,7 +27,9 @@ export class WriteReviewDialog {
             type: 'number',
             attributes: {
                 name: 'rating',
-                maxlength: 50,
+                maxlength: 10,
+                max: 5,
+                min: 1,
                 placeholder: 'от 1 до 5, где 5 — отлично',
             },
         });
